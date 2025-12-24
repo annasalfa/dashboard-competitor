@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Comparison View - MarketIntel</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for table */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-default::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .scrollbar-default::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .scrollbar-default::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+        .scrollbar-default::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d121b] dark:text-white overflow-hidden">
+<div class="relative flex h-screen w-full flex-row overflow-hidden">
+<!-- Side Navigation -->
+<aside class="flex h-full w-64 flex-col border-r border-[#e7ebf3] bg-white dark:bg-[#1a202c] dark:border-gray-800 shrink-0">
+<div class="flex h-full flex-col justify-between p-4">
+<div class="flex flex-col gap-4">
+<!-- Brand -->
+<div class="flex gap-3 items-center px-2 py-1">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shrink-0" data-alt="Abstract blue geometric logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDGOJXS7UYRATxMwV4cfeZpqaDrvip5w35C7UeEAScTmksI8xR22MCXrA-xYZX4e2oAYt0HyvN3I_ZVvDb2Joxe9jxYsAdyVM_jDqMwP3n0oYUASAqHyh77efZxm7TaPgS7SV5f2_C1OwCBIu19W0RKBiwbmAWNfHEcB6FxRNfBtBrbbFT4MhCiJSh43dTL_D4VlN_qpLBzBnfYC7ZkYx9x8dRC1PU5lnx-xVd5l_nsf3oCq7cZ_L8NxePs3H6vj9o0HP2XmDRJlbA");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#0d121b] dark:text-white text-base font-bold leading-normal">MarketIntel</h1>
+<p class="text-[#4c669a] text-xs font-normal leading-normal">Analyst Console</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-[#0d121b] dark:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<p class="text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-[#0d121b] dark:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<p class="text-sm font-medium leading-normal">Market Analysis</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary text-white shadow-md shadow-primary/20" href="#">
+<span class="material-symbols-outlined text-[20px]">compare_arrows</span>
+<p class="text-sm font-medium leading-normal">Comparison</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-[#0d121b] dark:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<p class="text-sm font-medium leading-normal">Reports</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-[#0d121b] dark:text-gray-300 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<p class="text-sm font-medium leading-normal">Settings</p>
+</a>
+</nav>
+</div>
+<!-- Bottom User Profile (Optional placeholder) -->
+<div class="flex items-center gap-3 px-3 py-3 border-t border-gray-100 dark:border-gray-800 mt-auto">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8 shrink-0" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAk5v31V2x0pRgyoBV9lojQXq7PyOcwNAiPP_bn4U8IR0Q81wS_OOdFUHOON6EwoUp6r11h-FQ7Q3m51Z6dmTXvnYHKitNPsKFxDi8aMiQrd6smeiTy0ZrymljUdRtnPAeNk_XY4XeQa8JlMmPI6EJbiOgoWY1KPbVy-lKcdtdS6yWBySD5fGx03tAUt0W4FyJTeNdhrUxwA5T30lY2k6ABVRBcDIsFyv8TFmxgkgO9JiaMz2zgaha_ahtKTkwRIFUVVoYgs-M6UMQ");'></div>
+<div class="flex flex-col">
+<p class="text-[#0d121b] dark:text-white text-sm font-medium">Alex Morgan</p>
+<p class="text-[#4c669a] text-xs">Senior Analyst</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7ebf3] dark:border-gray-800 bg-white dark:bg-[#1a202c] px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-8 w-full max-w-[600px]">
+<div class="flex items-center gap-3 text-[#0d121b] dark:text-white">
+<button class="md:hidden p-1 rounded-md hover:bg-gray-100">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="text-[#0d121b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Comparison Tool</h2>
+</div>
+<!-- Global Search -->
+<label class="flex flex-col w-full h-10 hidden sm:flex">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f6f6f8] dark:bg-gray-800 border border-transparent focus-within:border-primary/50 transition-colors">
+<div class="text-[#4c669a] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d121b] dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-[#4c669a] px-3 text-sm font-normal leading-normal" placeholder="Search markets, companies..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-end gap-4 ml-4">
+<div class="flex gap-1">
+<button class="flex items-center justify-center rounded-lg size-10 hover:bg-gray-100 dark:hover:bg-gray-800 text-[#0d121b] dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 hover:bg-gray-100 dark:hover:bg-gray-800 text-[#0d121b] dark:text-gray-300 transition-colors">
+<span class="material-symbols-outlined text-[22px]">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Page Content -->
+<div class="flex-1 overflow-y-auto scrollbar-default p-6 lg:px-10 pb-20">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-6">
+<!-- Breadcrumbs & Heading Section -->
+<div class="flex flex-col gap-4">
+<div class="flex flex-wrap gap-2 items-center text-sm">
+<a class="text-[#4c669a] hover:text-primary font-medium" href="#">SaaS Markets</a>
+<span class="text-[#4c669a] font-medium">/</span>
+<span class="text-[#0d121b] dark:text-white font-medium">Project Management Tools</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#0d121b] dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.02em]">Competitor Benchmark</h1>
+<p class="text-[#4c669a] text-base font-normal">Comparing 3 of 5 selected entities in the 'Project Management' sector.</p>
+</div>
+<button class="flex items-center gap-2 h-10 px-4 rounded-lg border border-[#e7ebf3] hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800 bg-white dark:bg-[#1a202c] text-[#0d121b] dark:text-white text-sm font-bold transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export Report</span>
+</button>
+</div>
+</div>
+<!-- Filters / Chip Bar -->
+<div class="bg-white dark:bg-[#1a202c] p-4 rounded-xl border border-[#e7ebf3] dark:border-gray-800 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex flex-wrap gap-3 items-center">
+<!-- Period Picker -->
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-[#f6f6f8] dark:bg-gray-800 pl-3 pr-3 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors border border-transparent hover:border-gray-300">
+<span class="material-symbols-outlined text-[18px] text-[#4c669a]">calendar_today</span>
+<p class="text-[#0d121b] dark:text-white text-sm font-medium">Last Quarter</p>
+<span class="material-symbols-outlined text-[18px] text-[#4c669a]">expand_more</span>
+</button>
+<div class="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-1 hidden md:block"></div>
+<!-- Selected Competitors -->
+<div class="flex flex-wrap gap-2">
+<div class="flex h-9 items-center gap-x-2 rounded-lg bg-primary/10 border border-primary/20 pl-2 pr-3">
+<div class="size-6 bg-white rounded-full flex items-center justify-center overflow-hidden">
+<div class="size-4 bg-cover bg-center" data-alt="Asana logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7HycBZyRO9rU8Z9sXq7-1M66kb4uqX2NZwlfUoQRsYfPBIJGGJK8SbqYBKzeyIttp7lFQ40iZuNR1Iu6VdLD7VISr7_CmFCPNswI3v3nYYA7HrKl4WsH7Pq_J9QqNs90mQpOgbQNH5GqsPhY_AbDoj7Kgb2jzWFj-Iv9kbwO-PJ2ktoqIiCa2BXdady_-fbsbZ4WbiG7OG-7pR4YcTTrbAy1NjcN-ay_SQE89KP02TEL4jHIBIFXak3ZTmKKK_XMr_Ie_aQvXlDs')"></div>
+</div>
+<p class="text-primary text-sm font-bold">Asana</p>
+<button class="text-primary/60 hover:text-primary"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+<div class="flex h-9 items-center gap-x-2 rounded-lg bg-orange-50 border border-orange-200 pl-2 pr-3">
+<div class="size-6 bg-white rounded-full flex items-center justify-center overflow-hidden">
+<div class="size-4 bg-cover bg-center" data-alt="Monday.com logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDciox_L21ElLxH1mIUln9cD338KLNyx0delYQSZglwgJccRZSHyp_f1556bZ0SrVtszEdmqWt8MFiDfNq2SJhHfE9ZfFQXSoOQj5UYY_-1Id2gQIjlCiTwBtgtta1i3YuucvCH5BxljrQesIOM3cIKfaW7khnij4APa9AB8auP0Juscv_GgTWsW_Oi9AarEUnvCSnPU76n-Dn0y4GuXo5OXm8C84F_uedxmujtx2pBAmkgtTxG2jHyMGcDXdWFCZDfmPa6gJFLz7k')"></div>
+</div>
+<p class="text-orange-700 text-sm font-bold">Monday.com</p>
+<button class="text-orange-700/60 hover:text-orange-800"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+<div class="flex h-9 items-center gap-x-2 rounded-lg bg-purple-50 border border-purple-200 pl-2 pr-3">
+<div class="size-6 bg-white rounded-full flex items-center justify-center overflow-hidden">
+<div class="size-4 bg-cover bg-center" data-alt="ClickUp logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXqJFG-JIPzes6W0XecuekIF6DxF6max4z6IfhmitZ1uN2h2-WrBf0fvDYC3q0bHBRWDum_74W6oGGe-EY9Wo57D9fwnpRJ63VMFAEfyq9FgYowmaqGzG_I-y0cvmSH5-ciDff7c3XA0HnuKi4n60YmXItQoTmSjQwtKytU62GTXNWb_ISkU5Wbb2aRR8gnl_QYIeJBWqdSvcfmGKVwRkNIe-iAB2MOYMJeGzTJ7il1ye1IHpafeZ1cMeZtqGZx2aY3bCxyveC-xk')"></div>
+</div>
+<p class="text-purple-700 text-sm font-bold">ClickUp</p>
+<button class="text-purple-700/60 hover:text-purple-800"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+</div>
+</div>
+<button class="flex items-center gap-2 text-primary text-sm font-bold hover:underline px-2">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                            Add Competitor
+                        </button>
+</div>
+<!-- Visual Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Chart 1: Market Presence (Simple Bar) -->
+<div class="bg-white dark:bg-[#1a202c] p-6 rounded-xl border border-[#e7ebf3] dark:border-gray-800 shadow-sm flex flex-col h-full">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-lg font-bold text-[#0d121b] dark:text-white">Market Presence Score</h3>
+<p class="text-sm text-[#4c669a]">Based on traffic and brand mentions</p>
+</div>
+<button class="text-[#4c669a] hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<div class="flex flex-col gap-5 justify-center flex-1">
+<!-- Bar Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-sm font-medium mb-1">
+<span class="text-[#0d121b] dark:text-white">Asana</span>
+<span class="text-[#0d121b] dark:text-white">88%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+<div class="bg-primary h-3 rounded-full" style="width: 88%"></div>
+</div>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-sm font-medium mb-1">
+<span class="text-[#0d121b] dark:text-white">Monday.com</span>
+<span class="text-[#0d121b] dark:text-white">92%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+<div class="bg-orange-500 h-3 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-sm font-medium mb-1">
+<span class="text-[#0d121b] dark:text-white">ClickUp</span>
+<span class="text-[#0d121b] dark:text-white">74%</span>
+</div>
+<div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+<div class="bg-purple-500 h-3 rounded-full" style="width: 74%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart 2: Feature Overlap (Visual Rep) -->
+<div class="bg-white dark:bg-[#1a202c] p-6 rounded-xl border border-[#e7ebf3] dark:border-gray-800 shadow-sm flex flex-col h-full">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-lg font-bold text-[#0d121b] dark:text-white">Innovation Index</h3>
+<p class="text-sm text-[#4c669a]">Feature release velocity &amp; AI integration</p>
+</div>
+<button class="text-[#4c669a] hover:text-primary"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<div class="flex items-end justify-around h-40 gap-4 mt-auto">
+<div class="flex flex-col items-center gap-2 w-full">
+<span class="text-sm font-bold text-primary">8.5</span>
+<div class="w-full max-w-[60px] bg-primary/20 rounded-t-lg relative group h-24">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-500" style="height: 85%"></div>
+</div>
+<span class="text-xs font-medium text-gray-500">Asana</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<span class="text-sm font-bold text-orange-500">9.1</span>
+<div class="w-full max-w-[60px] bg-orange-100 rounded-t-lg relative group h-32">
+<div class="absolute bottom-0 w-full bg-orange-500 rounded-t-lg transition-all duration-500" style="height: 91%"></div>
+</div>
+<span class="text-xs font-medium text-gray-500">Monday</span>
+</div>
+<div class="flex flex-col items-center gap-2 w-full">
+<span class="text-sm font-bold text-purple-500">9.4</span>
+<div class="w-full max-w-[60px] bg-purple-100 rounded-t-lg relative group h-40">
+<div class="absolute bottom-0 w-full bg-purple-500 rounded-t-lg transition-all duration-500" style="height: 94%"></div>
+</div>
+<span class="text-xs font-medium text-gray-500">ClickUp</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Comparison Table -->
+<div class="bg-white dark:bg-[#1a202c] rounded-xl border border-[#e7ebf3] dark:border-gray-800 shadow-sm overflow-hidden flex flex-col">
+<div class="p-6 border-b border-[#e7ebf3] dark:border-gray-800">
+<h3 class="text-lg font-bold text-[#0d121b] dark:text-white">Detailed Comparison</h3>
+</div>
+<div class="overflow-x-auto scrollbar-default">
+<table class="w-full min-w-[800px] text-left border-collapse">
+<thead>
+<tr class="bg-[#f8f9fc] dark:bg-gray-800/50 border-b border-[#e7ebf3] dark:border-gray-700">
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-[#4c669a] w-1/4 sticky left-0 bg-[#f8f9fc] dark:bg-[#1f2937] z-10 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">Metric</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-[#4c669a] w-1/4">
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-white bg-cover bg-center border border-gray-200" data-alt="Asana mini logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2JJAoNuYBOUFOcOsPyjOec-T8rUlT_vMaJM4b-svLhza1XUrsCAn0JBfXTTf8WsPZyaWb5UXEZ-l-HDizIl4GbgAqhK1-hRL2m_bed7Lvh6enPVjzzlgzr-IWKggIhCKeJByXWRvXqqq9fs8-R3NEtYViq_Pdx4aBXcWkReBL7-Z_SnazeDAiPDmBlqqKYLu0fHz2CDBzW4WSQDe5wmPE6PVLwB_8jpiaJj4hKVZMhTusXrM-UYwsG_v0WIai0q-VfkQqah32GUM')"></div>
+                                                Asana
+                                            </div>
+</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-[#4c669a] w-1/4">
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-white bg-cover bg-center border border-gray-200" data-alt="Monday mini logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDe-NXJE90020Lo7pkiLjQ5s53H1H7TMb66Usliboqastiw_CATNTm7LcnBnHmSll943MKOpKTNN6KUTI9mfugdOGd7UNrAZT7D1YFArUY_rFBUplGHZYRu3AWiiX17qpg05dRvWdyJ1vkH0LZEEaZUeQ-MOU5XD6MK5lHsB-4ZjAtkLH8W-2w-SDXfk45IJ16kGvKzYK9yHoysVC7He4689A5x8eKcFyDlJ21UcqaRpve6iWiaw7MIbptB3fdL8rVk_Otp0cx1CqM')"></div>
+                                                Monday.com
+                                            </div>
+</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-[#4c669a] w-1/4">
+<div class="flex items-center gap-2">
+<div class="size-5 rounded-full bg-white bg-cover bg-center border border-gray-200" data-alt="ClickUp mini logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBE3q4QOgA3jzuF8rHqT8xdmDNfbK3tb6rUo3luVc0zpuhwCc_Yi8CUKht8Wih2HpuJUBj9swG36fTz8Z0hrqYaYvu0BG-K3BwtLtVji15TodVkkcZveSKV28WBOGUm0i6Nc9vG_neaqeQjw3kXfw8ZPknVTzvJRfOxYsQUGJ-iXRy1WcorAJoFoJ5lBx_ZlHnyepJUPUL9yZdH4R1PCkqDP4wO5WxZoz_ugaJ0UUlJsB1YdghAtTkzGMIxDQDvEQRLtM3kDlG9Raw')"></div>
+                                                ClickUp
+                                            </div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e7ebf3] dark:divide-gray-800">
+<!-- Row: Overall Rating -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6 text-sm font-medium text-[#0d121b] dark:text-white sticky left-0 bg-white dark:bg-[#1a202c] group-hover:bg-gray-50 dark:group-hover:bg-[#1f2937] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">Overall Rating</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[#0d121b] dark:text-white">4.5</span>
+<div class="flex text-yellow-400">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star_half</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[#0d121b] dark:text-white">4.7</span>
+<div class="flex text-yellow-400">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<span class="font-bold text-[#0d121b] dark:text-white">4.6</span>
+<div class="flex text-yellow-400">
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star</span>
+<span class="material-symbols-outlined text-[16px] fill-current">star_half</span>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row: Reviews Count -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6 text-sm font-medium text-[#0d121b] dark:text-white sticky left-0 bg-white dark:bg-[#1a202c] group-hover:bg-gray-50 dark:group-hover:bg-[#1f2937] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">Total Reviews</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<span class="text-sm text-[#0d121b] dark:text-white">24.5k</span>
+<span class="text-xs text-green-600 bg-green-50 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 12%
+                                                </span>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<span class="text-sm text-[#0d121b] dark:text-white">18.2k</span>
+<span class="text-xs text-green-600 bg-green-50 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 8%
+                                                </span>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2">
+<span class="text-sm text-[#0d121b] dark:text-white">12.9k</span>
+<span class="text-xs text-green-600 bg-green-50 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 24%
+                                                </span>
+</div>
+</td>
+</tr>
+<!-- Row: Website Availability -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6 text-sm font-medium text-[#0d121b] dark:text-white sticky left-0 bg-white dark:bg-[#1a202c] group-hover:bg-gray-50 dark:group-hover:bg-[#1f2937] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">Website Availability</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-200">
+<span class="size-1.5 rounded-full bg-green-500"></span> Online
+                                            </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 border border-green-200">
+<span class="size-1.5 rounded-full bg-green-500"></span> Online
+                                            </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-50 text-yellow-700 border border-yellow-200">
+<span class="size-1.5 rounded-full bg-yellow-500"></span> Maintenance
+                                            </span>
+</td>
+</tr>
+<!-- Row: Ads Indicator -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6 text-sm font-medium text-[#0d121b] dark:text-white sticky left-0 bg-white dark:bg-[#1a202c] group-hover:bg-gray-50 dark:group-hover:bg-[#1f2937] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">Active Ads</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-sm font-medium">Yes (Display, Search)</span>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-sm font-medium">Yes (Video, Search)</span>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-sm font-medium">Yes (Social, Search)</span>
+</div>
+</td>
+</tr>
+<!-- Row: Reputation Score -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6 text-sm font-medium text-[#0d121b] dark:text-white sticky left-0 bg-white dark:bg-[#1a202c] group-hover:bg-gray-50 dark:group-hover:bg-[#1f2937] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">Reputation Score</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<span class="text-sm font-bold text-[#0d121b] dark:text-white w-8">88</span>
+<div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 min-w-[60px]">
+<div class="bg-primary h-2 rounded-full" style="width: 88%"></div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<span class="text-sm font-bold text-[#0d121b] dark:text-white w-8">92</span>
+<div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 min-w-[60px]">
+<div class="bg-green-500 h-2 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<span class="text-sm font-bold text-[#0d121b] dark:text-white w-8">85</span>
+<div class="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2 min-w-[60px]">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row: Digital Readiness -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6 text-sm font-medium text-[#0d121b] dark:text-white sticky left-0 bg-white dark:bg-[#1a202c] group-hover:bg-gray-50 dark:group-hover:bg-[#1f2937] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">Digital Readiness</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold bg-primary/10 text-primary uppercase tracking-wide">
+                                                Advanced
+                                            </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold bg-green-100 text-green-800 uppercase tracking-wide">
+                                                Leader
+                                            </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold bg-purple-100 text-purple-800 uppercase tracking-wide">
+                                                Visionary
+                                            </span>
+</td>
+</tr>
+<!-- Row: Actions -->
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="py-4 px-6 text-sm font-medium text-[#0d121b] dark:text-white sticky left-0 bg-white dark:bg-[#1a202c] group-hover:bg-gray-50 dark:group-hover:bg-[#1f2937] shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] border-none"></td>
+<td class="py-4 px-6 border-none">
+<button class="text-primary text-sm font-medium hover:underline">View Details</button>
+</td>
+<td class="py-4 px-6 border-none">
+<button class="text-primary text-sm font-medium hover:underline">View Details</button>
+</td>
+<td class="py-4 px-6 border-none">
+<button class="text-primary text-sm font-medium hover:underline">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

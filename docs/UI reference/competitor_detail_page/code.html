@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Competitor Detail Page - CompeteIntel</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem", // rounded-md match
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- SideNavBar -->
+<aside class="w-64 h-full flex flex-col bg-white dark:bg-[#151c2b] border-r border-[#e7ebf3] dark:border-slate-800 flex-shrink-0 z-20">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</div>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold tracking-tight">CompeteIntel</h1>
+</div>
+<nav class="flex-1 overflow-y-auto px-4 py-2 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] icon-filled">group</span>
+<span class="text-sm font-medium">Competitor Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">trending_up</span>
+<span class="text-sm font-medium">Market Trends</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">description</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<div class="pt-4 mt-2 border-t border-slate-100 dark:border-slate-800">
+<p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Workspace</p>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">help</span>
+<span class="text-sm font-medium">Support</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-[#e7ebf3] dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border border-slate-200" data-alt="User profile picture of a man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWfuI2MZrVdwBcYy5VBvf5NY30vb1AuqIBUVmDiTbzMru35GHZdyPY3aCqkcATb9Jtb0nFjzGgxr9ezg2GCqWphxNmbggtG76nHOu_BLQVlkbOra3RWwV-nsh2r44V-xmpEx-PjQozjgmWWOmpWIiF1pW8-j8ofAYC1kfA-zdLT34PP7DaF8s-h0mfIn_cGLEdcGrakM1dEUKiZre1Wqb7r6u48muWaYhgY6DUN_SIV983UWwlksJBVYHsxq5-ThyAHNO-Z4KpHHo');"></div>
+<div class="flex flex-col">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Alex Morgan</p>
+<p class="text-xs text-slate-500">Pro Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 flex flex-col h-full relative overflow-hidden">
+<!-- TopNavBar -->
+<header class="h-16 flex items-center justify-between px-6 border-b border-[#e7ebf3] dark:border-slate-800 bg-white dark:bg-[#151c2b] flex-shrink-0 z-10">
+<div class="flex items-center gap-6">
+<!-- Breadcrumbs (Simplified for Header) or Title -->
+<div class="hidden md:flex items-center gap-2 text-sm">
+<span class="text-slate-500">Market:</span>
+<button class="flex items-center gap-1 font-medium text-slate-900 dark:text-white hover:text-primary transition-colors">
+                            North America SaaS
+                            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<!-- Search -->
+<div class="relative group hidden sm:block">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+</div>
+<input class="block w-64 pl-10 pr-3 py-2 border-none rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm transition-all" placeholder="Search competitors..." type="text"/>
+</div>
+<!-- Actions -->
+<button class="relative p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#151c2b]"></span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-6 md:p-10">
+<div class="max-w-6xl mx-auto flex flex-col gap-8 pb-10">
+<!-- Breadcrumbs Component -->
+<nav class="flex flex-wrap gap-2 text-sm text-slate-500">
+<a class="hover:text-primary transition-colors" href="#">Market: North America SaaS</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">Competitors</a>
+<span>/</span>
+<span class="text-slate-900 dark:text-white font-medium">Acme Corp</span>
+</nav>
+<!-- Page Header Section -->
+<div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+<div class="flex items-start gap-5">
+<div class="size-20 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm p-4 flex items-center justify-center flex-shrink-0">
+<img class="w-full h-full object-contain opacity-80" data-alt="Acme Corp logo placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIJOCKiH90WbzevUudgklHHdghNLAnvnjShNJ5eSZnXW12uwbvQar3gzCSCRqj86FfzAGUQttaWHZnrBooetsBLYaxlxMUGmLeERB_gfmO2dkqhwWOmPAJMY8IyjMZYXc04UHf9si_L8vNbEZ2xWQUt05JHlG4sExb25kOWkJFk0Vt-gm8ZwCTqspEuBLAFGXFXD9T9GiqOPWuq_PHTA6N7zxtsv74KrvLucD5XnHHoZ1-hvK55ss-Ad_jD3gfLTNaxvfP-e2sV_s" style="filter: grayscale(100%);"/>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 flex-wrap">
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Acme Corp</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700 border border-green-200 dark:bg-green-900/30 dark:text-green-400 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-600 animate-pulse"></span>
+                                        Active
+                                    </span>
+</div>
+<p class="text-slate-500 text-base">Enterprise CRM Software • San Francisco, CA</p>
+<div class="flex gap-4 mt-1 text-sm text-slate-500">
+<a class="flex items-center gap-1 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">language</span>
+                                        acmecorp.com
+                                        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                        Updated Oct 24, 2023
+                                    </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                Edit
+                            </button>
+<button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-sm shadow-blue-500/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                                Export PDF
+                            </button>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Rating Card -->
+<div class="bg-white dark:bg-[#1e293b] p-5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between h-36">
+<div class="flex justify-between items-start">
+<span class="text-slate-500 text-sm font-medium">Customer Rating</span>
+<div class="p-1.5 bg-yellow-50 dark:bg-yellow-900/20 rounded text-yellow-600 dark:text-yellow-400">
+<span class="material-symbols-outlined text-[20px] icon-filled">star</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">4.8</span>
+<span class="text-sm text-slate-400">/ 5.0</span>
+</div>
+<div class="mt-1 flex items-center gap-2">
+<div class="flex text-yellow-400 text-[14px]">
+<span class="material-symbols-outlined icon-filled">star</span>
+<span class="material-symbols-outlined icon-filled">star</span>
+<span class="material-symbols-outlined icon-filled">star</span>
+<span class="material-symbols-outlined icon-filled">star</span>
+<span class="material-symbols-outlined icon-filled" style="clip-path: inset(0 20% 0 0);">star</span>
+</div>
+<span class="text-xs text-slate-500 font-medium">Excellent</span>
+</div>
+</div>
+</div>
+<!-- Reviews Card -->
+<div class="bg-white dark:bg-[#1e293b] p-5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between h-36">
+<div class="flex justify-between items-start">
+<span class="text-slate-500 text-sm font-medium">Total Reviews</span>
+<div class="p-1.5 bg-purple-50 dark:bg-purple-900/20 rounded text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined text-[20px]">reviews</span>
+</div>
+</div>
+<div>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">1,240</span>
+</div>
+<div class="mt-1 flex items-center gap-1 text-sm text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-medium">12%</span>
+<span class="text-slate-400 text-xs ml-1">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Reputation Score -->
+<div class="bg-white dark:bg-[#1e293b] p-5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between h-36">
+<div class="flex justify-between items-start">
+<span class="text-slate-500 text-sm font-medium">Reputation Score</span>
+<div class="p-1.5 bg-blue-50 dark:bg-blue-900/20 rounded text-primary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+</div>
+<div class="w-full">
+<div class="flex justify-between items-end mb-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">88</span>
+<span class="text-sm font-medium text-primary bg-primary/10 px-2 py-0.5 rounded">High</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 88%"></div>
+</div>
+</div>
+</div>
+<!-- Digital Readiness -->
+<div class="bg-white dark:bg-[#1e293b] p-5 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col justify-between h-36">
+<div class="flex justify-between items-start">
+<span class="text-slate-500 text-sm font-medium">Digital Readiness</span>
+<div class="p-1.5 bg-teal-50 dark:bg-teal-900/20 rounded text-teal-600 dark:text-teal-400">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+</div>
+</div>
+<div class="w-full">
+<div class="flex justify-between items-end mb-2">
+<span class="text-3xl font-bold text-slate-900 dark:text-white">92</span>
+<span class="text-sm font-medium text-teal-600 bg-teal-50 dark:bg-teal-900/30 dark:text-teal-400 px-2 py-0.5 rounded">Leader</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+<div class="bg-teal-500 h-2 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- SWOT Analysis Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">SWOT Analysis</h2>
+<button class="text-sm text-primary font-medium hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">smart_toy</span>
+                                Refresh with AI
+                            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Strengths -->
+<div class="bg-white dark:bg-[#1e293b] rounded-lg border-t-4 border-t-green-500 border-x border-b border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-1.5 rounded bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white">Strengths</h3>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-green-500 flex-shrink-0"></span>
+<span><strong>Market Dominance:</strong> Holds 40% share in the mid-market segment.</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-green-500 flex-shrink-0"></span>
+<span><strong>Strong SEO:</strong> Consistently ranks #1 for key industry keywords driving high organic traffic.</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-green-500 flex-shrink-0"></span>
+<span><strong>Brand Recognition:</strong> High aided recall among enterprise buyers.</span>
+</li>
+</ul>
+</div>
+<!-- Weaknesses -->
+<div class="bg-white dark:bg-[#1e293b] rounded-lg border-t-4 border-t-orange-500 border-x border-b border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-1.5 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white">Weaknesses</h3>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-orange-500 flex-shrink-0"></span>
+<span><strong>Legacy Tech Stack:</strong> Slow release cycles due to accumulated technical debt.</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-orange-500 flex-shrink-0"></span>
+<span><strong>High Churn Rate:</strong> SMB customers churning at 15% annually due to pricing.</span>
+</li>
+</ul>
+</div>
+<!-- Opportunities -->
+<div class="bg-white dark:bg-[#1e293b] rounded-lg border-t-4 border-t-blue-500 border-x border-b border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-1.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white">Opportunities</h3>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+<span><strong>AI Integration:</strong> Potential to launch generative AI features for customer support automation.</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+<span><strong>APAC Expansion:</strong> Market penetration in Asia is currently under 5%.</span>
+</li>
+</ul>
+</div>
+<!-- Threats -->
+<div class="bg-white dark:bg-[#1e293b] rounded-lg border-t-4 border-t-red-500 border-x border-b border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-1.5 rounded bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400">
+<span class="material-symbols-outlined text-[20px]">security</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white">Threats</h3>
+</div>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+<span><strong>New Entrants:</strong> Low-cost agile competitors entering the CRM space.</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+<span class="mt-1.5 size-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+<span><strong>Regulatory Changes:</strong> New data privacy laws in EU could impact data processing capabilities.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Additional Metadata / Footer -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Headquarters</h4>
+<p class="text-sm text-slate-500 mt-0.5">123 Tech Blvd, Suite 400<br/>San Francisco, CA 94105</p>
+<div class="mt-2 h-24 w-full rounded-lg bg-cover bg-center opacity-80" data-alt="Map showing location in San Francisco" data-location="San Francisco map preview" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAO3-IiX3gAEGbRmEoH8e6v-54MS9dnJLwYg2_C3WNP0l9KuYflT52eYsnl-uWAzc8-_VYVNQWtchHDXstGdgjKAbv0WeVCCppGNlCa-U2oOund60rGP__XX5VPGrO6doM8h7mT3xSwBte-riuPiFV98sDrFHAsLurklD6TRHQgRSYlBZDduX_JLYruiz6P4wWq1Ks784xifBsz3kp08_UfDyYenab08vuMX-G79oTviB_4lAYpJieoXvRWTHSwqnkTX33zsm-TtxY');"></div>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">person_search</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Key Personnel</h4>
+<ul class="mt-2 space-y-2">
+<li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+<div class="size-6 rounded-full bg-slate-200 bg-cover" data-alt="CEO portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDgQhG4RR_U4uFN9fEmR6J0Mkv6-N5cur4vlURwmTZR8PGpEYRj0McrKT7tZaSWdJK0wjQ9gGR-SSjuNyJiWRBdBhvKfYT9rLtnhJ2eEMjmI2xqYFQ6_f_LCGA5dGli_k1W8IowAS-1gD3T0R4N_kyNg2Wbhg6QO1JPiAGg6GBDfR4zrlfOeakVpvSWJXJT5Uk5kGCYuZpYeFfq_-PvBqRjFTr9696ajNyDIrdn8u_XgnlUVuGSxREnuyICmc_bol3MndfWveZoV1s');"></div>
+<span>John Doe (CEO)</span>
+</li>
+<li class="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+<div class="size-6 rounded-full bg-slate-200 bg-cover" data-alt="CTO portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKcVcCvXXysMAuvX7WHDSi_t8tF-CeeTyoUQdeyP_v1Zrfn-sXyaeKewWTqUfwILOI32ve1ZTnpisdCHY5YyijeuFL-DvnDv80SqZTE_iegLAaVOzBG0sBhMT39BhCbPjbdng7LXFZld_VtZ15pko3kVitoVf7LsR7rVPOEOQ6F1xZqMyjtWpXoCOyYSV1J8s-mtO3csDEC-gXpf3vdU34XxVnQ4DWKlnxvMMXEZ_81aa-zU_ZwAn7ux6jiM7gInC4x3Qkx7OAQ78');"></div>
+<span>Jane Smith (CTO)</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</div>
+<div class="w-full">
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Digital Footprint</h4>
+<div class="flex gap-2 mt-3">
+<a class="size-8 rounded flex items-center justify-center bg-[#0077b5]/10 text-[#0077b5] hover:bg-[#0077b5] hover:text-white transition-colors" href="#">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+</a>
+<a class="size-8 rounded flex items-center justify-center bg-[#1DA1F2]/10 text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white transition-colors" href="#">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</a>
+<a class="size-8 rounded flex items-center justify-center bg-[#4267B2]/10 text-[#4267B2] hover:bg-[#4267B2] hover:text-white transition-colors" href="#">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

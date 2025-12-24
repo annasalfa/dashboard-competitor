@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Competitors List Page</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white h-screen overflow-hidden flex">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-[#1e2736] border-r border-slate-200 dark:border-slate-800 flex-shrink-0 flex flex-col transition-all duration-300 z-20 h-full hidden md:flex">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined text-primary" style="font-size: 28px;">analytics</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">MarketIntel</h1>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:bg-primary/20 dark:text-blue-300 transition-colors" href="#">
+<span class="material-symbols-outlined font-variation-fill">group</span>
+<span class="font-medium text-sm">Competitors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">trending_up</span>
+<span class="font-medium text-sm">Market Trends</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">description</span>
+<span class="font-medium text-sm">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">settings</span>
+<span class="font-medium text-sm">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-3 flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-cover bg-center shrink-0 border border-slate-200 dark:border-slate-700" data-alt="Portrait of a male analyst in business casual attire" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnkW4oxmYYavlppDp71bNMCPWy8ht57TrSulMjr6jEEO7hyBwGi7WhGNFibw7NiNtAamMveckz4z2cQ-V24ao_rwYtnUSb2_In_KeyJD7yItLnG9iACeCFTkufvJEeydfIG0e_QPASWokpTCOJvKcFfYnW0r243YyPUNHJy7y9IBTFcyKov-uGqVYbhP4iJUq41lvr41j66-46tNe8k2EJ9l0rPpFmdEKlTnxgZWyIPro5BJWZe3JpR5fNd85yh86ZBOiHsEMNaCE');"></div>
+<div class="flex flex-col min-w-0">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Alex Morgan</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">Lead Analyst</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Bar -->
+<header class="h-16 bg-white/80 dark:bg-[#1e2736]/90 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 z-10 shrink-0">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-slate-400">/</span>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Analysis</a>
+<span class="text-slate-400">/</span>
+<span class="font-medium text-slate-900 dark:text-white">Competitors</span>
+</div>
+<!-- Global Search & Mobile Menu Toggle -->
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary/50 text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Global Search..." type="text"/>
+</div>
+<button class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+<div class="max-w-7xl mx-auto flex flex-col gap-6">
+<!-- Headline -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Competitor Analysis</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">North America SaaS Market • Q3 2023</p>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<!-- Filters & Actions Toolbar -->
+<div class="bg-white dark:bg-[#1e2736] p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
+<!-- Search Input -->
+<div class="relative w-full lg:w-96 group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg leading-5 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition-shadow" placeholder="Filter by name, category, or tag..." type="text"/>
+</div>
+<!-- Filter Chips & CTA -->
+<div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+<!-- Category Filter -->
+<div class="relative">
+<button class="flex items-center gap-2 px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                Category: All
+                                <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+<!-- Risk Filter -->
+<div class="relative">
+<button class="flex items-center gap-2 px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                Risk: All
+                                <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+<div class="w-px h-8 bg-slate-200 dark:bg-slate-700 mx-1 hidden sm:block"></div>
+<button class="flex-1 sm:flex-none justify-center flex items-center gap-2 bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold shadow-md shadow-blue-500/20 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                            Add Competitor
+                        </button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-white dark:bg-[#1e2736] rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider w-12" scope="col">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider cursor-pointer group" scope="col">
+<div class="flex items-center gap-1">
+                                            Competitor
+                                            <span class="material-symbols-outlined text-[16px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">unfold_more</span>
+</div>
+</th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider hidden sm:table-cell" scope="col">Category</th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider hidden lg:table-cell" scope="col">Rating</th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">Scores</th>
+<th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">Risk Level</th>
+<th class="px-6 py-4 text-right text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-700 bg-white dark:bg-[#1e2736]">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group/row cursor-pointer">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0 rounded-lg bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
+                                                A
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-white group-hover/row:text-primary transition-colors">Acme Corp</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
+<a class="hover:underline flex items-center gap-1" href="#">
+                                                        acme.inc 
+                                                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300">
+                                            Enterprise CRM
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
+<div class="flex items-center gap-1.5">
+<div class="flex text-yellow-400 text-[16px]">
+<span class="material-symbols-outlined font-variation-fill">star</span>
+</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">4.8</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">(1.2k)</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap w-64">
+<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Reputation</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">85/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Digital Readiness</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">92/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-emerald-500 h-1.5 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                                            Safe
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group/row cursor-pointer">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-lg">
+                                                G
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-white group-hover/row:text-primary transition-colors">Globex Systems</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
+<a class="hover:underline flex items-center gap-1" href="#">
+                                                        globex.co
+                                                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300">
+                                            Supply Chain
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
+<div class="flex items-center gap-1.5">
+<div class="flex text-yellow-400 text-[16px]">
+<span class="material-symbols-outlined font-variation-fill">star</span>
+</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">4.2</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">(450)</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap w-64">
+<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Reputation</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">62/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-yellow-500 h-1.5 rounded-full" style="width: 62%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Digital Readiness</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">70/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500 mr-1.5"></span>
+                                            Medium Risk
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group/row cursor-pointer">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0 rounded-lg bg-pink-100 flex items-center justify-center text-pink-600 font-bold text-lg">
+                                                I
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-white group-hover/row:text-primary transition-colors">Initech</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
+<a class="hover:underline flex items-center gap-1" href="#">
+                                                        initech.net
+                                                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300">
+                                            Marketing Automation
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
+<div class="flex items-center gap-1.5">
+<div class="flex text-yellow-400 text-[16px]">
+<span class="material-symbols-outlined font-variation-fill">star</span>
+</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">3.1</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">(89)</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap w-64">
+<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Reputation</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">45/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-red-400 h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Digital Readiness</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">88/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 88%"></div>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-400 border border-red-100 dark:border-red-800">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5"></span>
+                                            High Risk
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group/row cursor-pointer">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg">
+                                                S
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-white group-hover/row:text-primary transition-colors">Soylent Corp</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
+<a class="hover:underline flex items-center gap-1" href="#">
+                                                        soylent.io
+                                                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300">
+                                            Food Tech
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
+<div class="flex items-center gap-1.5">
+<div class="flex text-yellow-400 text-[16px]">
+<span class="material-symbols-outlined font-variation-fill">star</span>
+</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">4.9</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">(3.4k)</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap w-64">
+<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Reputation</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">95/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Digital Readiness</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">98/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-emerald-500 h-1.5 rounded-full" style="width: 98%"></div>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                                            Safe
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group/row cursor-pointer">
+<td class="px-6 py-4 whitespace-nowrap">
+<input class="rounded border-slate-300 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="h-10 w-10 flex-shrink-0 rounded-lg bg-teal-100 flex items-center justify-center text-teal-600 font-bold text-lg">
+                                                M
+                                            </div>
+<div class="ml-4">
+<div class="text-sm font-semibold text-slate-900 dark:text-white group-hover/row:text-primary transition-colors">Massive Dynamic</div>
+<div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-0.5">
+<a class="hover:underline flex items-center gap-1" href="#">
+                                                        massivedynamic.com
+                                                        <span class="material-symbols-outlined text-[12px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300">
+                                            Robotics
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap hidden lg:table-cell">
+<div class="flex items-center gap-1.5">
+<div class="flex text-yellow-400 text-[16px]">
+<span class="material-symbols-outlined font-variation-fill">star</span>
+</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">3.9</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">(210)</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap w-64">
+<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Reputation</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">77/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 77%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500 dark:text-slate-400">Digital Readiness</span>
+<span class="font-medium text-slate-700 dark:text-slate-200">55/100</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-yellow-500 h-1.5 rounded-full" style="width: 55%"></div>
+</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border border-yellow-100 dark:border-yellow-800">
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-500 mr-1.5"></span>
+                                            Medium Risk
+                                        </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<button class="text-slate-400 hover:text-primary transition-colors p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-white dark:bg-[#1e2736] px-4 py-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between sm:px-6">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-sm text-slate-700 dark:text-slate-300">
+                                    Showing
+                                    <span class="font-medium">1</span>
+                                    to
+                                    <span class="font-medium">5</span>
+                                    of
+                                    <span class="font-medium">24</span>
+                                    results
+                                </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                        1
+                                    </a>
+<a class="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                        2
+                                    </a>
+<a class="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                        3
+                                    </a>
+<span class="relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300">
+                                        ...
+                                    </span>
+<a class="bg-white dark:bg-slate-800 border-slate-300 dark:border-slate-700 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#">
+                                        8
+                                    </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Mobile Pagination View -->
+<div class="flex sm:hidden justify-between w-full">
+<button class="relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-700 text-sm font-medium rounded-md text-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">
+                                Previous
+                            </button>
+<button class="ml-3 relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-700 text-sm font-medium rounded-md text-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700">
+                                Next
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
