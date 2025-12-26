@@ -12,7 +12,7 @@ export async function GET(
     { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params
-    const supabase = await createClient()
+    const supabase = createClient()
 
     // Query competitor with metrics and SWOT
     const { data: competitor, error } = await supabase

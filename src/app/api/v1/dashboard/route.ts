@@ -12,7 +12,7 @@ function normalizeRating(rating: number | undefined | null): number {
 }
 
 export async function GET() {
-    const supabase = await createClient()
+    const supabase = createClient()
 
     // Get all competitors
     const { data: competitors, error } = await supabase

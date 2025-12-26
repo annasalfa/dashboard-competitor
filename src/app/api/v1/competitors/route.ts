@@ -63,7 +63,7 @@ function transformCompetitor(comp: Record<string, unknown>): TransformedCompetit
 }
 
 export async function GET(request: NextRequest) {
-    const supabase = await createClient()
+    const supabase = createClient()
 
     // Parse query params
     const searchParams = request.nextUrl.searchParams
