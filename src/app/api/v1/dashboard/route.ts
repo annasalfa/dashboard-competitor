@@ -1,30 +1,8 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
-
-interface ScrapedCompetitor {
-    place_id: string
-    name: string
-    reviews: number
-    rating: number
-    main_category: string
-    website?: string
-    phone?: string
-    address?: string
-}
-
-function loadScrapedData(): ScrapedCompetitor[] {
-    try {
-        const filePath = path.join(process.cwd(), 'docs', 'scraped_data.json')
-        const fileContent = fs.readFileSync(filePath, 'utf-8')
-        return JSON.parse(fileContent)
-    } catch {
-        return []
-    }
-}
+import { createClient } from '@/lib/supabase/server'
 
 // Normalize rating (some values appear as 45751 meaning 4.5751 or similar)
-function normalizeRating(rating: number | undefined): number {
+function normalizeRating(rating: number | undefined | null): number {
     if (!rating) return 0
     if (rating > 5) {
         // Convert values like 45720 to 4.57
@@ -34,11 +12,21 @@ function normalizeRating(rating: number | undefined): number {
 }
 
 export async function GET() {
-    const competitors = loadScrapedData()
+    const supabase = await createClient()
+
+    // Get all competitors
+    const { data: competitors, error } = await supabase
+        .from('competitors')
+        .select('*')
+
+    if (error) {
+        console.error('Error fetching competitors:', error)
+        return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 })
+    }
 
     // Calculate statistics
-    const totalCompetitors = competitors.length
-    const validRatings = competitors
+    const totalCompetitors = competitors?.length || 0
+    const validRatings = (competitors || [])
         .map(c => normalizeRating(c.rating))
         .filter(r => r > 0)
     const averageRating = validRatings.length > 0
@@ -54,17 +42,17 @@ export async function GET() {
     ]
 
     // Risk indicators
-    const noRating = competitors.filter(c => !c.rating || c.rating === 0).length
-    const lowRating = competitors.filter(c => normalizeRating(c.rating) > 0 && normalizeRating(c.rating) < 3).length
-    const noWebsite = competitors.filter(c => !c.website).length
+    const noRating = (competitors || []).filter(c => !c.rating || c.rating === 0).length
+    const lowRating = (competitors || []).filter(c => normalizeRating(c.rating) > 0 && normalizeRating(c.rating) < 3).length
+    const noWebsite = (competitors || []).filter(c => !c.website).length
 
     // Top categories
     const categoryCount: Record<string, number> = {}
-    competitors.forEach(c => {
-        if (c.main_category) {
-            categoryCount[c.main_category] = (categoryCount[c.main_category] || 0) + 1
-        }
-    })
+        ; (competitors || []).forEach(c => {
+            if (c.main_category) {
+                categoryCount[c.main_category] = (categoryCount[c.main_category] || 0) + 1
+            }
+        })
     const topCategories = Object.entries(categoryCount)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5)
@@ -72,9 +60,9 @@ export async function GET() {
 
     // Competition level based on reviews
     const competitionLevel = {
-        low: competitors.filter(c => c.reviews < 10).length,
-        medium: competitors.filter(c => c.reviews >= 10 && c.reviews < 50).length,
-        high: competitors.filter(c => c.reviews >= 50).length,
+        low: (competitors || []).filter(c => (c.reviews || 0) < 10).length,
+        medium: (competitors || []).filter(c => (c.reviews || 0) >= 10 && (c.reviews || 0) < 50).length,
+        high: (competitors || []).filter(c => (c.reviews || 0) >= 50).length,
     }
 
     return NextResponse.json({

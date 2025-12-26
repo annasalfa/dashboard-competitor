@@ -1,29 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
-
-interface ScrapedCompetitor {
-    place_id: string
-    name: string
-    description?: string
-    reviews: number
-    rating: number
-    competitors?: string
-    phone?: string
-    website?: string
-    can_claim?: number
-    owner_name?: string
-    owner_profile_link?: string
-    featured_image?: string
-    main_category: string
-    categories: string
-    workday_timing?: string
-    closed_on?: string
-    address: string
-    review_keywords?: string
-    link: string
-    query: string
-}
+import { createClient } from '@/lib/supabase/server'
 
 interface TransformedCompetitor {
     id: string
@@ -46,27 +22,17 @@ interface TransformedCompetitor {
         digital_readiness_score: number
         competition_level: string
         risk_flag: boolean
-    }
+    } | null
     swot_analysis: {
         strength: string[]
         weakness: string[]
         opportunity: string[]
         threat: string[]
-    }
-}
-
-function loadScrapedData(): ScrapedCompetitor[] {
-    try {
-        const filePath = path.join(process.cwd(), 'docs', 'scraped_data.json')
-        const fileContent = fs.readFileSync(filePath, 'utf-8')
-        return JSON.parse(fileContent)
-    } catch {
-        return []
-    }
+    } | null
 }
 
 // Normalize rating (some values appear as 45751 meaning 4.5751 or similar)
-function normalizeRating(rating: number | undefined): number | null {
+function normalizeRating(rating: number | undefined | null): number | null {
     if (!rating) return null
     if (rating > 5) {
         return Math.round((rating / 10000) * 100) / 100
@@ -74,107 +40,30 @@ function normalizeRating(rating: number | undefined): number | null {
     return rating
 }
 
-// Calculate derived metrics
-function calculateMetrics(comp: ScrapedCompetitor) {
-    const rating = normalizeRating(comp.rating) || 0
-    const reviews = comp.reviews || 0
-    const hasWebsite = !!comp.website
-
-    // Reputation score: weighted combination of rating and review count
-    const ratingScore = rating / 5
-    const reviewScore = Math.min(reviews / 100, 1) // Cap at 100 reviews
-    const reputationScore = (ratingScore * 0.6) + (reviewScore * 0.4)
-
-    // Digital readiness: based on website and featured image
-    const digitalReadinessScore = (hasWebsite ? 0.6 : 0) + (comp.featured_image ? 0.4 : 0)
-
-    // Competition level based on reviews
-    let competitionLevel = 'Low'
-    if (reviews >= 50) competitionLevel = 'High'
-    else if (reviews >= 10) competitionLevel = 'Medium'
-
-    // Risk flag: low rating or no reviews
-    const riskFlag = rating < 3 || reviews === 0
-
+function transformCompetitor(comp: Record<string, unknown>): TransformedCompetitor {
     return {
-        reputation_score: Math.round(reputationScore * 100) / 100,
-        digital_readiness_score: Math.round(digitalReadinessScore * 100) / 100,
-        competition_level: competitionLevel,
-        risk_flag: riskFlag
-    }
-}
-
-// Generate SWOT based on data
-function generateSwot(comp: ScrapedCompetitor) {
-    const rating = normalizeRating(comp.rating) || 0
-    const reviews = comp.reviews || 0
-    const hasWebsite = !!comp.website
-
-    const strengths: string[] = []
-    const weaknesses: string[] = []
-    const opportunities: string[] = []
-    const threats: string[] = []
-
-    // Strengths
-    if (rating >= 4.5) strengths.push(`High rating (${rating.toFixed(1)})`)
-    else if (rating >= 4) strengths.push(`Good rating (${rating.toFixed(1)})`)
-    if (reviews >= 50) strengths.push(`Strong review count (${reviews})`)
-    else if (reviews >= 20) strengths.push(`Moderate review count (${reviews})`)
-    if (hasWebsite) strengths.push('Has website presence')
-    if (comp.workday_timing === 'Buka 24 jam') strengths.push('24-hour availability')
-
-    // Weaknesses
-    if (!hasWebsite) weaknesses.push('No website - missing digital presence')
-    if (rating > 0 && rating < 4) weaknesses.push(`Below average rating (${rating.toFixed(1)})`)
-    if (reviews === 0) weaknesses.push('No reviews yet')
-    else if (reviews < 5) weaknesses.push(`Very few reviews (${reviews})`)
-
-    // Opportunities
-    if (!hasWebsite) opportunities.push('Website development opportunity')
-    if (reviews < 20) opportunities.push('Review generation campaign')
-    opportunities.push('Expand market presence')
-
-    // Threats
-    if (comp.competitors) {
-        const competitorCount = (comp.competitors.match(/Name:/g) || []).length
-        if (competitorCount >= 3) threats.push(`${competitorCount}+ nearby competitors`)
-    }
-    if (rating < 4) threats.push('Losing customers to higher-rated competitors')
-    threats.push('Market competition pressure')
-
-    return {
-        strength: strengths.slice(0, 4),
-        weakness: weaknesses.slice(0, 4),
-        opportunity: opportunities.slice(0, 4),
-        threat: threats.slice(0, 4)
-    }
-}
-
-function transformCompetitor(comp: ScrapedCompetitor, index: number): TransformedCompetitor {
-    return {
-        id: String(index + 1),
-        place_id: comp.place_id,
-        name: comp.name,
-        description: comp.description || null,
-        main_category: comp.main_category || null,
-        categories: comp.categories ? comp.categories.split(', ') : [],
-        rating: normalizeRating(comp.rating),
-        reviews: comp.reviews || 0,
-        website: comp.website || null,
-        address: comp.address || null,
-        phone: comp.phone || null,
-        operational_status: comp.closed_on === 'Open All Days' ? 'open' : 'limited',
-        market_query: comp.query || null,
-        link: comp.link,
-        featured_image: comp.featured_image || null,
-        competitor_metrics: calculateMetrics(comp),
-        swot_analysis: generateSwot(comp)
+        id: comp.id as string,
+        place_id: comp.place_id as string,
+        name: comp.name as string,
+        description: null,
+        main_category: comp.main_category as string | null,
+        categories: (comp.categories as string[]) || [],
+        rating: normalizeRating(comp.rating as number | null),
+        reviews: (comp.reviews as number) || 0,
+        website: comp.website as string | null,
+        address: comp.address as string | null,
+        phone: null,
+        operational_status: comp.operational_status as string || 'active',
+        market_query: comp.market_query as string | null,
+        link: '',
+        featured_image: null,
+        competitor_metrics: comp.competitor_metrics as TransformedCompetitor['competitor_metrics'],
+        swot_analysis: comp.swot_analysis as TransformedCompetitor['swot_analysis']
     }
 }
 
 export async function GET(request: NextRequest) {
-    const rawData = loadScrapedData()
-    const competitors = rawData.map((c, i) => transformCompetitor(c, i))
+    const supabase = await createClient()
 
     // Parse query params
     const searchParams = request.nextUrl.searchParams
@@ -183,28 +72,42 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search') || ''
     const category = searchParams.get('category') || ''
 
-    let filtered = competitors
+    // Build query
+    let query = supabase
+        .from('competitors')
+        .select(`
+            *,
+            competitor_metrics (*),
+            swot_analysis (*)
+        `, { count: 'exact' })
 
-    // Apply filters
+    // Apply search filter
     if (search) {
-        const searchLower = search.toLowerCase()
-        filtered = filtered.filter(c =>
-            c.name.toLowerCase().includes(searchLower) ||
-            c.address?.toLowerCase().includes(searchLower)
-        )
+        query = query.or(`name.ilike.%${search}%,address.ilike.%${search}%`)
     }
 
+    // Apply category filter
     if (category) {
-        filtered = filtered.filter(c => c.main_category === category)
+        query = query.eq('main_category', category)
     }
 
-    // Paginate
+    // Apply pagination
     const offset = (page - 1) * limit
-    const paginated = filtered.slice(offset, offset + limit)
+    query = query.range(offset, offset + limit - 1)
+
+    const { data: competitors, error, count } = await query
+
+    if (error) {
+        console.error('Error fetching competitors:', error)
+        return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 })
+    }
+
+    // Transform data
+    const transformed = (competitors || []).map(c => transformCompetitor(c))
 
     return NextResponse.json({
-        data: paginated,
-        total: filtered.length,
+        data: transformed,
+        total: count || 0,
         page,
         limit
     })
